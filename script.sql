@@ -2,6 +2,16 @@ create schema if not exists cms_php;
 
 use cms_php;
 
+/* tabela responsável pelo registro de login */
+create table cms_php.login (
+    id int primary key auto_increment,
+    nome varchar(255),
+    login varchar(255) unique,
+    senha varchar(255)
+);
+
+insert into cms_php.login values (null, 'Luis', 'lpjunior', md5('Senac@123'));
+
 /* tabela responsável pelas opções do menubar */
 create table cms_php.menu (
     id int primary key auto_increment,
@@ -31,6 +41,7 @@ create table contact (
     contact_message text not null
 );
 
+/* tabela responsável por armazenar os links */
 create table link (
     id int primary key auto_increment,
     link_name varchar(255) unique,
