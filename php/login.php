@@ -51,10 +51,12 @@
                                 <div class="col-md-12 control">
                                     <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                                         <p>Sistema de gerenciamento de conteúdo</p>
-<p class="text-danger"><?= isset($_SESSION['msg']) ? $_SESSION['msg'] : "" ?></p>
-<?php
-    session_unset($_SESSION['msg']);
-?>
+                                        <p class="text-danger"><?= isset($_SESSION['msg']) ? $_SESSION['msg'] : "" ?></p>
+                                        <?php
+                                            if(isset($_SESSION['msg'])):
+                                                session_unset($_SESSION['msg']);
+                                            endif;
+                                        ?>
                                         </a>
                                     </div>
                                 </div>

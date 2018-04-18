@@ -1,3 +1,7 @@
+/* 
+    mysql --user=root --password=
+ */
+
 create schema if not exists cms_php;
 
 use cms_php;
@@ -11,6 +15,7 @@ create table cms_php.login (
 );
 
 insert into cms_php.login values (null, 'Luis', 'lpjunior', md5('Senac@123'));
+insert into cms_php.login values (null, 'Claudemir', 'mizinho', md5('Senac@123'));
 
 /* tabela responsável pelas opções do menubar */
 create table cms_php.menu (
@@ -40,6 +45,7 @@ create table contact (
     contact_email varchar(255) not null,
     contact_message text not null
 );
+
 
 /* tabela responsável por armazenar os links */
 create table link (

@@ -1,8 +1,67 @@
 <?php
+include_once './crud_contato.php';
+session_start();
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+if (!isset($_SESSION['logado'])) {
+    header("Location: login.php");
+    die();
+} else {
+    $usuario = $_SESSION['logado'];
+}
+?>
+<!doctype html>
+<html lang="pt-br">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <title>Área Restrita!</title>
+    </head>
+    <body>
+        <div class="container col-md-8 offset-md-2" style="margin-top: 2%" align="center">
+            <td>
+                <h1 align="center">Bem Vindo <?= $usuario['nome'] ?></h1>
+                <p align="center"><a href="deslogar.php">Deslogar</a>
+            </td>
+            <div class="row">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nome</th>
+                            <th>Email</th>
+                            <th>Mensagem</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach (getContatos() as $contato) :
+                            ?>
+
+                            <tr>
+                                <td><?= $contato['id'] ?></td>
+                                <td><?= $contato['contact_name'] ?></td>
+                                <td><?= $contato['contact_email'] ?></td>
+                                <td><?= $contato['contact_message'] ?></td>
+                                <td><a href="contato.php?exluir=<?= $contato['id'] ?>"><span class="fa fa-trash-o"></span></a></td>
+                            </tr>
+                            <?php
+                        endforeach;
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </body>
+</html>
