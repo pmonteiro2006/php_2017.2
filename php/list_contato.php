@@ -22,7 +22,7 @@ if (!isset($_SESSION['logado'])) {
     <body>
         <div class="container col-md-8 offset-md-2" style="margin-top: 2%" align="center">
             <td>
-                <h1 align="center">Bem Vindo <?= $usuario['nome'] ?></h1>
+                <h1 align="center">Bem Vindo <?= $_SESSION['logado']['nome'] ?></h1>
                 <p align="center"><a href="deslogar.php">Deslogar</a>
             </td>
             <div class="row">
@@ -46,7 +46,7 @@ if (!isset($_SESSION['logado'])) {
                                 <td><?= $contato['contact_name'] ?></td>
                                 <td><?= $contato['contact_email'] ?></td>
                                 <td><?= $contato['contact_message'] ?></td>
-                                <td><a href="contato.php?exluir=<?= $contato['id'] ?>"><span class="fa fa-trash-o"></span></a></td>
+                                <td><a href="contato.php?excluir=<?= $contato['id'] ?>"><span class="fa fa-trash-o"></span></a></td>
                             </tr>
                             <?php
                         endforeach;

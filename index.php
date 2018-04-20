@@ -128,10 +128,12 @@
                         ?>
                         <p class="text-success"><?= $_SESSION['msg_success'] ?></p>
                         <?php
+                            session_unset($_SESSION['msg_success']);
                             elseif(isset($_SESSION['msg_fail'])) :
                         ?>
                         <p class="text-danger"><?= $_SESSION['msg_fail'] ?></p>
                         <?php        
+                            session_unset($_SESSION['msg_fail']);
                             endif;
                         ?>
                         <div class="field half first">
