@@ -1,7 +1,5 @@
 <?php
-
 require_once './conexao.php';
-
 # função para listar todos os contatos
 function getContatos() {
     # definir a variavel de conexao
@@ -20,13 +18,25 @@ function getContatos() {
     # retorna o array carregado com os contatos
     return $contactList;
 }
-
 # função para listar um  contato especifico
 function getContato($id) {
     # definir a variavel de conexao
     $link = getConnection();
     # query de consulta(lista) para a tabela
     $query = "select * from contact where id = $id";
+    # envio da query e recebimento do resultado
+    $result = mysqli_query($link, $query);
+    # carregar a variavel com os dados do banco
+    $contact = mysqli_fetch_assoc($result);
+    # retorna o contato carregado com os dados
+    return $contact;
+}
+# função para listar um  contato especifico
+function getContatoEmail($email) {
+    # definir a variavel de conexao
+    $link = getConnection();
+    # query de consulta(lista) para a tabela
+    $query = "select * from contact where contact_email like '{$email}'";
     # envio da query e recebimento do resultado
     $result = mysqli_query($link, $query);
     # carregar a variavel com os dados do banco
@@ -45,7 +55,6 @@ function setContato($name, $email, $message) {
     }
     return false;
 }
-
 # função para atualizar um contato
 function atualizaContato($id, $name, $email, $message) {
     $link = getConnection();
@@ -57,7 +66,6 @@ function atualizaContato($id, $name, $email, $message) {
     }
     return false;
 }
-
 # função para excluir um contato
 function excluiContato($id) {
     $link = getConnection();

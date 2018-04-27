@@ -1,5 +1,4 @@
 <?php
-
     # remove a sessão "logado"
     session_unset($_SESSION['logado']);
     
@@ -14,4 +13,3 @@
     
     # finaliza o arquivo
     die();
-

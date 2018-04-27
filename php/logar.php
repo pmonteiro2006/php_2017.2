@@ -16,4 +16,3 @@
     # die(), serve para encerrar a leitura do arquivo naquele ponto
     die();
     
-
